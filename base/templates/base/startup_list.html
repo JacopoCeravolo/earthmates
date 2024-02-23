@@ -1,0 +1,28 @@
+{% if request.user.is_authenticated %}
+<p>{{request.user}}</p>
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+<hr />
+<h1>Startup List</h1>
+<a href="{% url 'startup-create' %}"> Add Startup</a>
+<table>
+  <tr>
+    <th>Startup</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  {% for startup in startups %}
+  <tr>
+    <td>{{startup.startup_name}}</td>
+    <td><a href="{% url 'startup' startup.id %}"> View</a></td>
+    <td><a href="{% url 'startup-update' startup.id %}"> Edit</a></td>
+    <td><a href="{% url 'startup-delete' startup.id %}"> Delete</a></td>
+  </tr>
+  {% empty %}
+  <h3>No startups found</h3>
+  {% endfor %}
+</table>
