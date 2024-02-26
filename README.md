@@ -1,1 +1,1 @@
-# Earthmates
+# EarthMates
